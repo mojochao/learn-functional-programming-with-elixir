@@ -1,0 +1,5 @@
+* Learn Functional Programming with Elixir study
+
+This repository contains my work created during study of the 
+https://pragprog.com/book/cdc-elixir/learn-functional-programming-with-elixir
+book.
