@@ -1,14 +1,22 @@
 defmodule MatchstickFactory do
 
-  @big    50
-  @medium 20
-  @small   5
+  def boxes(num_matchsticks) when is_integer(num_matchsticks) do
+    _boxes(0, 0, 0, num_matchsticks)
+  end
 
-  def boxes(num_matchsticks), do: boxes_(0, 0, 0, num_matchsticks)
+  @box_size %{big: 50, medium: 20, small: 5}
 
-  defp boxes_(big, medium, small, remaining) when remaining >= @big,    do: boxes_(big + 1, medium, small, remaining - @big)
-  defp boxes_(big, medium, small, remaining) when remaining >= @medium, do: boxes_(big, medium + 1, small, remaining - @medium)
-  defp boxes_(big, medium, small, remaining) when remaining >= @small,  do: boxes_(big, medium, small + 1, remaining - @small
-  defp boxes_(big, medium, small, remaining),                           do: %{big: big, medium: medium, small: small, remaining: remaining}
+  defp _boxes(big, medium, small, remaining) when remaining >= @box_size.big do
+    _boxes(big + 1, medium, small, remaining - @box_size.big)
+  end
+  defp _boxes(big, medium, small, remaining) when remaining >= @box_size.medium do
+    _boxes(big, medium + 1, small, remaining - @box_size.medium)
+  end
+  defp _boxes(big, medium, small, remaining) when remaining >= @box_size.small do
+    _boxes(big, medium, small + 1, remaining - @box_size.small)
+  end
+  defp _boxes(big, medium, small, remaining) do
+    %{big: big, medium: medium, small: small, remaining: remaining}
+  end
 
 end
